@@ -27,6 +27,14 @@ public class ProductController {
 		return "index";
 	}
 	
+	@RequestMapping("/inventoryDetails")
+	public String viewInventoryDetails(Model model) {
+		List<Product> listProducts = productService.listAll();
+		model.addAttribute("listProducts", listProducts);
+		
+		return "InventoryDetails";
+	}
+	
 	@RequestMapping("/new")
 	public String showNewProductForm(Model model) {
 		Product product = new Product();

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Product Manager</title>
+</head>
+<body>
+<div align="center">	
+	<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+		
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Logout" />
+	</form>
+	
+	<h1>Product Manager</h1>
+	<a href="product/new">Create New Product</a>
+	<a href="distributor/ShowAll">Distributor List</a>
+	<a href="inventoryDetails">Inventory Details</a>
+	
+	<br/><br/>
+	<table border="1" cellpadding="10">
+		<thead>
+			<tr>
+				<th>Product</th>
+				<th>Manufacturer</th>
+				<th>In Stock</th>
+				<th>Last purchase on</th>		
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="product : ${listProducts}">
+				<td th:text="${product.productName}">Product</td>
+				<td th:text="${product.manufacturer}">Manufacturer</td>
+				<td th:text="${product.inStock}">In Stock</td>
+				<td th:text="${product.lastPurchaseOn}">Last purchase on</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>

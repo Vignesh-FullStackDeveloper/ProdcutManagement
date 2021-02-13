@@ -20,11 +20,8 @@ public class Stock {
 	private Long idDistributor;
 	private Long unitsreceived;
 	private Long distributorPrice;
-	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date  recievedDate;
-	
-	private Long inStock;
 
 	public Stock() {
 	}
@@ -69,14 +66,6 @@ public class Stock {
 
 	public void setRecievedDate(Date recievedDate) {
 		this.recievedDate = recievedDate;
-	}
-
-	public Long getInStock() {
-		return inStock;
-	}
-
-	public void setInStock(Long inStock) {
-		this.inStock = inStock;
 	}
 
 	public Long getIdDistributor() {

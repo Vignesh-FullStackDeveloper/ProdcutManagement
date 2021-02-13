@@ -17,7 +17,7 @@
 								id="dropProduct">
 								<option value="0">Select Product</option>
 								<option th:each="product : ${listProducts}"
-									th:value="${product.id}" th:text="${product.product}"></option>
+									th:value="${product.id}" th:text="${product.productName}"></option>
 							</select>
 					</div></td>
 				</tr>
@@ -44,14 +44,10 @@
 				</tr>	
 				
 				<tr>
-					<td>Recieved Date</td>
+					<td>Recieved Date:</td>
 					<td><input type="date" th:value="${stock.recievedDate}" th:field="${stock.recievedDate}" id="date-started"/></td>
 				</tr>
-				
-				<tr>
-					<td>In Stock</td>
-					<td><input type="text" th:field="*{inStock}" /></td>
-				</tr>		
+					
 								
 				<tr>
 					<td colspan="2"><button type="submit">Save</button></td>
