@@ -9,6 +9,7 @@ import javax.persistence.Id;
 public class Stock {
 	private Long idstock;
 	private Long idProduct;
+	private Long idDistributor;
 	private Long unitsreceived;
 	private Long distributorPrice;
 	private String recievedDate;
@@ -65,6 +66,14 @@ public class Stock {
 
 	public void setInStock(Long inStock) {
 		this.inStock = inStock;
+	}
+
+	public Long getIdDistributor() {
+		return idDistributor;
+	}
+
+	public void setIdDistributor(Long idDistributor) {
+		this.idDistributor = idDistributor;
 	}
 
 }

@@ -22,7 +22,7 @@
 		<thead>
 			<tr>
 				<th>Product ID</th>
-				<th>Product</th>
+				<th>Product Name</th>
 				<th>Manufacturer</th>
 				<th>MRP</th>
 				
@@ -33,7 +33,7 @@
 		<tbody>
 			<tr th:each="product : ${listProducts}">
 				<td th:text="${product.id}">Product ID</td>
-				<td th:text="${product.product}">Product</td>
+				<td th:text="${product.productName}">Product Name</td>
 				<td th:text="${product.manufacturer}">Manufacturer</td>
 				<td th:text="${product.MRP}">MRP</td>
 				<td sec:authorize="hasRole('ROLE_ADMIN')">

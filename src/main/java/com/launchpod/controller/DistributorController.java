@@ -37,7 +37,7 @@ public class DistributorController {
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveProduct(@ModelAttribute("distributor") Distributor distributor) {
+	public String saveDistributor(@ModelAttribute("distributor") Distributor distributor) {
 		distributorService.save(distributor);
 		
 		return "redirect:/";

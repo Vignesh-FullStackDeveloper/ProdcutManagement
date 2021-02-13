@@ -14,7 +14,7 @@
 	</form>
 	
 	<h1>Product Manager</h1>
-	<a href="new">Create New Product</a>
+	<a href="product/new">Create New Product</a>
 	<a href="distributor/ShowAll">Distributor List</a>
 	
 	<br/><br/>
@@ -27,7 +27,6 @@
 				<th>Address</th>
 				<th>ContactPerson</th>
 				<th>ContactNumber</th>
-				
 				<th sec:authorize="hasRole('ROLE_ADMIN')">Actions</th>				
 				
 			</tr>
@@ -38,10 +37,10 @@
 				<td th:text="${distributor.Code}">Code</td>
 				<td th:text="${distributor.name}">Name</td>
 				<td th:text="${distributor.address}">Address</td>
-				<td th:text="${distributor.contactname}">ContactPerson</td>
-				<td th:text="${distributor.phonenumber}">ContactNumber</td>
+				<td th:text="${distributor.contactPerson}">ContactPerson</td>
+				<td th:text="${distributor.contactNumber}">ContactNumber</td>
 				<td sec:authorize="hasRole('ROLE_ADMIN')">
-					<a th:href="@{'/distributor/edit/' + ${distributor.idDistributor}}">Edit</a>
+					<a th:href="@{'/distributor/edit/' + ${distributor.id}}">Edit</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<a th:href="@{'distributor/delete/' + ${distributor.id}}">Delete</a>
 				</td>
