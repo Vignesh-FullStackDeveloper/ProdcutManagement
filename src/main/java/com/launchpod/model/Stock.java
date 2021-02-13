@@ -87,5 +87,4 @@ public class Stock {
 		this.idDistributor = idDistributor;
 	}
 
-	
 }

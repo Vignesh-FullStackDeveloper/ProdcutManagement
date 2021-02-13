@@ -14,12 +14,16 @@ public class Distributor {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(name = "Code")
 	private String Code;
+	@Column(name = "name")
 	private String name;
+	@Column(name = "address")
 	private String address;
-	@Column(name = "contactname")
-	private String contactname;
-	private String phonenumber;
+	@Column(name = "contactNumber")
+	private String contactNumber;
+	@Column(name = "contactPerson")
+	private String contactPerson;
 
 	public Distributor() {
 	}
@@ -56,19 +60,19 @@ public class Distributor {
 		this.address = address;
 	}
 
-	public String getContactName() {
-		return contactname;
+	public String getContactPerson() {
+		return contactPerson;
 	}
 
-	public void setContactName(String contactname) {
-		this.contactname = contactname;
+	public void setContactPerson(String contactPerson) {
+		this.contactPerson = contactPerson;
 	}
 
-	public String getPhoneNumber() {
-		return phonenumber;
+	public String getContactNumber() {
+		return contactNumber;
 	}
 
-	public void setPhoneNumber(String phonenumber) {
-		this.phonenumber = phonenumber;
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
 	}
 }

@@ -1,23 +1,30 @@
 package com.launchpod.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "product")
 public class Product {
+	
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	//private Long idDistributor;
-	private String product;
+	@Column(name = "product_name")
+	private String productName;
+	@Column(name = "manufacturer")
 	private String manufacturer;
+	@Column(name = "MRP")
 	private float MRP;
 
 	public Product() {
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}
@@ -25,21 +32,13 @@ public class Product {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-//	public Long getIdDistributor() {
-//		return idDistributor;
-//	}
-//
-//	public void setIdDistributor(Long idDistributor) {
-//		this.idDistributor = idDistributor;
-//	}
 
-	public String getProduct() {
-		return product;
+	public String getProductName() {
+		return productName;
 	}
 
-	public void setProduct(String product) {
-		this.product = product;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 	public String getManufacturer() {
