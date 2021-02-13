@@ -1,30 +1,35 @@
 package com.launchpod.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "distributor")
 public class Distributor {
-	private Long idDistributor;
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String Code;
 	private String name;
 	private String address;
-	private String contactPerson;
-	private String contactNumber;
+	@Column(name = "contactname")
+	private String contactname;
+	private String phonenumber;
 
 	public Distributor() {
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long getIdDistributor() {
-		return idDistributor;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdDistributor(Long idDistributor) {
-		this.idDistributor = idDistributor;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getCode() {
@@ -51,19 +56,19 @@ public class Distributor {
 		this.address = address;
 	}
 
-	public String getContactPerson() {
-		return contactPerson;
+	public String getContactName() {
+		return contactname;
 	}
 
-	public void setContactPerson(String contactPerson) {
-		this.contactPerson = contactPerson;
+	public void setContactName(String contactname) {
+		this.contactname = contactname;
 	}
 
-	public String getContactNumber() {
-		return contactNumber;
+	public String getPhoneNumber() {
+		return phonenumber;
 	}
 
-	public void setContactNumber(String contactNumber) {
-		this.contactNumber = contactNumber;
+	public void setPhoneNumber(String phonenumber) {
+		this.phonenumber = phonenumber;
 	}
 }

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Product Manager</title>
+</head>
+<body>
+<div align="center">	
+	<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+		
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Logout" />
+	</form>
+	
+	<h1>Product Manager</h1>
+	<a href="new">Create New Product</a>
+	<a href="distributor/ShowAll">Distributor List</a>
+	
+	<br/><br/>
+	<table border="1" cellpadding="10">
+		<thead>
+			<tr>
+				<th>Distributor ID</th>
+				<th>Code</th>
+				<th>Name</th>
+				<th>Address</th>
+				<th>ContactPerson</th>
+				<th>ContactNumber</th>
+				
+				<th sec:authorize="hasRole('ROLE_ADMIN')">Actions</th>				
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="distributor : ${listDistributors}">
+				<td th:text="${distributor.id}">Distributor ID</td>
+				<td th:text="${distributor.Code}">Code</td>
+				<td th:text="${distributor.name}">Name</td>
+				<td th:text="${distributor.address}">Address</td>
+				<td th:text="${distributor.contactname}">ContactPerson</td>
+				<td th:text="${distributor.phonenumber}">ContactNumber</td>
+				<td sec:authorize="hasRole('ROLE_ADMIN')">
+					<a th:href="@{'/distributor/edit/' + ${distributor.idDistributor}}">Edit</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a th:href="@{'distributor/delete/' + ${distributor.id}}">Delete</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>

@@ -15,16 +15,17 @@ import com.launchpod.model.Distributor;
 import com.launchpod.service.DistributorService;
 
 @Controller
+@RequestMapping("/distributor")
 public class DistributorController {
 	@Autowired
 	private DistributorService distributorService;
 	
-	@RequestMapping("/")
+ 	@RequestMapping("/ShowAll")
 	public String viewHomePage(Model model) {
 		List<Distributor> listDistributors = distributorService.listAll();
 		model.addAttribute("listDistributors", listDistributors);
 		
-		return "index";
+		return "distributorList";
 	}
 	
 	@RequestMapping("/new")
