@@ -13,7 +13,6 @@ public class Stock {
 	private Long unitsreceived;
 	private Long distributorPrice;
 	private String recievedDate;
-	private Long inStock;
 
 	public Stock() {
 	}
@@ -58,14 +57,6 @@ public class Stock {
 
 	public void setRecievedDate(String recievedDate) {
 		this.recievedDate = recievedDate;
-	}
-
-	public Long getInStock() {
-		return inStock;
-	}
-
-	public void setInStock(Long inStock) {
-		this.inStock = inStock;
 	}
 
 	public Long getIdDistributor() {

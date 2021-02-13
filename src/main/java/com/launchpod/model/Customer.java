@@ -1,20 +1,31 @@
 package com.launchpod.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class CustomerDetails {
+@Table(name = "customerdetails")
+public class Customer {
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idcustomer;
+	@Column(name = "id")
 	private String name;
+	@Column(name = "contact_number")
 	private Long contactNumber;
+	@Column(name = "email")
 	private String email;
+	@Column(name = "last_bill_date")
 	private String lastBillDate;
+	@Column(name = "last_bill_amount")
 	private Long lastBillAmount;
 
-	public CustomerDetails() {
+	public Customer() {
 	}
 
 	@Id

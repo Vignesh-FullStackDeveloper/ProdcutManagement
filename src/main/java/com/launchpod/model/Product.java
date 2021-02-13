@@ -21,6 +21,10 @@ public class Product {
 	private String manufacturer;
 	@Column(name = "MRP")
 	private float MRP;
+	@Column(name = "in_stock")
+	private Long inStock;
+	@Column(name = "last_purchase_on")
+	private Long lastPurchaseOn;
 
 	public Product() {
 	}
@@ -55,6 +59,22 @@ public class Product {
 
 	public void setMRP(float MRP) {
 		this.MRP = MRP;
+	}
+
+	public Long getInStock() {
+		return inStock;
+	}
+
+	public void setInStock(Long inStock) {
+		this.inStock = inStock;
+	}
+
+	public Long getLastPurchaseOn() {
+		return lastPurchaseOn;
+	}
+
+	public void setLastPurchaseOn(Long lastPurchaseOn) {
+		this.lastPurchaseOn = lastPurchaseOn;
 	}
 
 }
