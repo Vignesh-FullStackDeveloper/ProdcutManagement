@@ -1,4 +1,4 @@
-package com.launchpod.model;
+package com.launchpod.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

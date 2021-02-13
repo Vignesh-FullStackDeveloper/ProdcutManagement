@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.launchpod.model.User;
+import com.launchpod.entity.User;
 import com.launchpod.repository.UserRepository;
 
 public class UserDetailsServiceImpl implements UserDetailsService {

@@ -7,7 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.launchpod.model.User;
+import com.launchpod.entity.User;
 
 public class MyUserDetails implements UserDetails {
 

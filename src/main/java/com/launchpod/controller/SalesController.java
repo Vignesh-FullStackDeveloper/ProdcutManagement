@@ -18,7 +18,7 @@ import com.launchpod.service.DistributorService;
 
 @Controller
 @RequestMapping("/customer")
-public class CustomerController {
+public class SalesController {
 	@Autowired
 	private CustomerService customerService;
 	

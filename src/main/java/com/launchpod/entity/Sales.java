@@ -1,4 +1,4 @@
-package com.launchpod.model;
+package com.launchpod.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

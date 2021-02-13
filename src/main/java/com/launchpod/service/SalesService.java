@@ -7,27 +7,33 @@ import org.springframework.stereotype.Service;
 
 import com.launchpod.entity.Customer;
 import com.launchpod.entity.Distributor;
+import com.launchpod.entity.Sales;
 import com.launchpod.repository.CustomerRepository;
 import com.launchpod.repository.DistributorRepository;
+import com.launchpod.repository.SalesRepository;
 
 @Service
-public class CustomerService {
+public class SalesService {
 	@Autowired
-	private CustomerRepository repo;
+	private SalesRepository repo;
 	
-	public List<Customer> listAll() {		
+	public List<Sales> listAll() {		
 		return repo.findAll();
 	}
 	
-	public void save(Customer customer) {
-		repo.save(customer);
+	public void save(Sales sales) {
+		repo.save(sales);
 	}
 	
-	public Customer get(Long id) {
+	public Sales get(Long id) {
 		return repo.findById(id).get();
 	}
 	
 	public void delete(Long id) {
 		repo.deleteById(id);
+	}
+	
+	public void getAllSalesOrder() {
+		
 	}
 }
