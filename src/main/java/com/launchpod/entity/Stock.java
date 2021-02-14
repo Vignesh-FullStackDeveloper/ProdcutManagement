@@ -19,8 +19,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Stock {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long idStock;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private Long idProduct;
 	private Long idDistributor;
 	private Long unitsreceived;
@@ -38,12 +38,12 @@ public class Stock {
     private Distributor distributor; 
 
 	
-	public Long getIdStock() {
-		return idStock;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdStock(Long idstock) {
-		this.idStock = idstock;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Long getIdProduct() {

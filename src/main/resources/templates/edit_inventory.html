@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit Inventory</title>
+</head>
+<body>
+	<div align="center">	
+		<h1>Edit Inventory</h1>
+		<br/>
+		<form action="#" th:action="@{/inventory/save}" th:object="${stock}" method="post">
+			<table border="0" cellpadding="10">
+				<tr>
+					<td>Product Name:</td>
+					<td><div class="form-group blu-margin">
+							<select class="form-control" th:field="*{idProduct}"
+								id="dropProduct">
+								<option value="0">Select Product</option>
+								<option th:each="product : ${listProducts}"
+									th:value="${product.id}" th:text="${product.productName}"></option>
+							</select>
+					</div></td>
+				</tr>
+				
+				<tr>
+					<td>Distributor Name:</td>
+					<td><div class="form-group blu-margin">
+							<select class="form-control" th:field="*{idDistributor}"
+								id="dropProduct">
+								<option value="0">Select Distributor</option>
+								<option th:each="distributor : ${listDistributors}"
+									th:value="${distributor.id}" th:text="${distributor.name}"></option>
+							</select>
+					</div></td>
+				</tr>
+				
+				<tr>
+					<td>Units Received:</td>
+					<td><input type="text" th:field="*{unitsreceived}" /></td>
+				</tr>				
+				<tr>
+					<td>Distributor Price:</td>
+					<td><input type="text" th:field="*{distributorPrice}" /></td>
+				</tr>	
+				
+				<tr>
+					<td>Recieved Date:</td>
+					<td><input type="date" th:value="${stock.recievedDate}" th:field="${stock.recievedDate}" id="date-started"/></td>
+				</tr>
+				
+				<tr>
+					<td><input type="hidden"  th:field="*{id}" /></td>
+				</tr>	
+								
+				<tr>
+					<td colspan="2"><button type="submit">Save</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>
