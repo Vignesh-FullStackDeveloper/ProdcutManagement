@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.launchpod.model.Distributor;
+import com.launchpod.entity.Distributor;
 import com.launchpod.repository.DistributorRepository;
 
 @Service

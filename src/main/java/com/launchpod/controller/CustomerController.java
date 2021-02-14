@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.launchpod.model.Customer;
-import com.launchpod.model.Distributor;
+import com.launchpod.entity.Customer;
+import com.launchpod.entity.Distributor;
 import com.launchpod.service.CustomerService;
 import com.launchpod.service.DistributorService;
 

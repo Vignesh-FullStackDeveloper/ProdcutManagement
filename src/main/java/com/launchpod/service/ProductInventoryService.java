@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.launchpod.model.Stock;
+import com.launchpod.entity.Stock;
 import com.launchpod.repository.StockRepository;
 
 

@@ -1,4 +1,4 @@
-package com.launchpod.model;
+package com.launchpod.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +13,7 @@ public class Customer {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idcustomer;
+	private Long id;
 	@Column(name = "id")
 	private String name;
 	@Column(name = "contact_number")
@@ -30,12 +30,12 @@ public class Customer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long getIdcustomer() {
-		return idcustomer;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdcustomer(Long idcustomer) {
-		this.idcustomer = idcustomer;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	public String getName() {
