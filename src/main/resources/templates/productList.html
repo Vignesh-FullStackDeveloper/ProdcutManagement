@@ -11,21 +11,29 @@
 	<table border="1" cellpadding="10">
 		<thead>
 			<tr>
-				<th>Product</th>
+				<th>Product ID</th>
+				<th>Product Name</th>
 				<th>Manufacturer</th>
-				<th>In Stock</th>
-				<th>Last purchase on</th>		
+				<th>MRP</th>
+				
+				<th sec:authorize="hasRole('ROLE_ADMIN')">Actions</th>				
 				
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="product : ${listProducts}">
-				<td th:text="${product.productName}">Product</td>
+				<td th:text="${product.id}">Product ID</td>
+				<td th:text="${product.productName}">Product Name</td>
 				<td th:text="${product.manufacturer}">Manufacturer</td>
-				<td th:text="${product.inStock}">In Stock</td>
-				<td th:text="${product.lastPurchaseOn}">Last purchase on</td>
+				<td th:text="${product.MRP}">MRP</td>
+				<td sec:authorize="hasRole('ROLE_ADMIN')">
+					<a th:href="@{'/product/edit/' + ${product.id}}">Edit</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a th:href="@{'/product/delete/' + ${product.id}}">Delete</a>
+				</td>
 			</tr>
 		</tbody>
+		<a href="/new">Create New Product</a>
 	</table>
 </div>
 </body>

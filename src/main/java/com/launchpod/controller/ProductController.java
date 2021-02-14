@@ -25,7 +25,7 @@ public class ProductController {
 		List<Product> listProducts = productService.listAll();
 		model.addAttribute("listProducts", listProducts);
 		
-		return "index";
+		return "productList";
 	}
 	
 	@RequestMapping("/inventoryDetails")
@@ -48,7 +48,7 @@ public class ProductController {
 	public String saveProduct(@ModelAttribute("product") Product product) {
 		productService.save(product);
 		
-		return "redirect:/";
+		return "redirect:/productList";
 	}
 	
 	@RequestMapping("/edit/{id}")
@@ -65,6 +65,6 @@ public class ProductController {
 	public String deleteProduct(@PathVariable(name = "id") Long id) {
 		productService.delete(id);
 		
-		return "redirect:/";
+		return "redirect:/productList";
 	}
 }

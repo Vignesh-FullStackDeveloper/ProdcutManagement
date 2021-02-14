@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+
+<div th:fragment="link">
+  <h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+		
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Logout" />
+	</form>
+	
+	<h1>Product Manager</h1>
+	<a th:href="@{/}">Sales Order</a>
+	<a th:href="@{/product/showAll}">Product List</a>
+	<a  th:href="@{/distributor/ShowAll}">Distributor List</a>
+	<a th:href="@{/inventory/ShowAll}">Inventory Details</a>
+	
+	<br/><br/>
+</div>
