@@ -1,4 +1,4 @@
-package com.launchpod.model;
+package com.launchpod.entity;
 public class ProductInventory {
 
 	private int productId;

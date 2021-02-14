@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.launchpod.model.Distributor;
-import com.launchpod.model.Product;
-import com.launchpod.model.ProductInventory;
-import com.launchpod.model.Stock;
+import com.launchpod.entity.Distributor;
+import com.launchpod.entity.Product;
+import com.launchpod.entity.ProductInventory;
+import com.launchpod.entity.Stock;
 import com.launchpod.service.DistributorService;
 import com.launchpod.service.ProductInventoryService;
 import com.launchpod.service.ProductService;
