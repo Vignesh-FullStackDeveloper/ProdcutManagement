@@ -1,9 +1,17 @@
 package com.launchpod.entity;
 
+
+
+
+
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Stock {
@@ -12,7 +20,8 @@ public class Stock {
 	private Long idDistributor;
 	private Long unitsreceived;
 	private Long distributorPrice;
-	private String recievedDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date  recievedDate;
 
 	public Stock() {
 	}
@@ -50,12 +59,12 @@ public class Stock {
 	public void setDistributorPrice(Long distributorPrice) {
 		this.distributorPrice = distributorPrice;
 	}
-
-	public String getRecievedDate() {
+	
+	public Date getRecievedDate() {
 		return recievedDate;
 	}
 
-	public void setRecievedDate(String recievedDate) {
+	public void setRecievedDate(Date recievedDate) {
 		this.recievedDate = recievedDate;
 	}
 
