@@ -52,17 +52,29 @@ public class SalesController {
 	@RequestMapping(value = "/newsave", method = RequestMethod.POST)
 	public String saveSalesOrder(@ModelAttribute("salesorder") Sales salesorder) {
 		
+		Product product = productService.get(salesorder.getIdProduct());
+		if(product.getInStock() > 0) {
 		Customer customer = customerService.get(salesorder.getIdCustomer());
 		customer.setLastBillAmount(salesorder.getPrice());
 		customer.setLastBillDate(salesorder.getPurchaseDate());
 		customerService.save(customer);
-		Product product = productService.get(salesorder.getIdProduct());
+		
 		product.setLastPurchaseOn(salesorder.getPurchaseDate());
-		product.setInStock(product.getInStock() + 1);
+		product.setInStock(product.getInStock() - 1);
 		productService.save(product);
 		salesService.save(salesorder);
 		
 		return "redirect:/salesorder/ShowAll";
+		}
+		else {
+			return "redirect:/salesorder/SalesOrderNotPossible";
+		}
+	}
+	
+	@RequestMapping(value = "/SalesOrderNotPossible", method = RequestMethod.POST)
+	public ModelAndView SalesOrderNotPossible() {
+		ModelAndView mav = new ModelAndView("SalesOrderNotPossible");
+		return mav;
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)

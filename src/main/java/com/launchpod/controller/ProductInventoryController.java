@@ -47,7 +47,10 @@ public class ProductInventoryController {
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveProductInventory(@ModelAttribute("stock") Stock stock) {
-		productInventoryService.save(stock);
+        Product product = productService.get(stock.getIdProduct());
+        product.setInStock(stock.getUnitsreceived() + product.getInStock());
+        productService.save(product);
+        productInventoryService.save(stock);
 		
 		return "redirect:/inventory/ShowAll";
 	}
@@ -60,26 +63,33 @@ public class ProductInventoryController {
 	}
 	
 	
-	@RequestMapping("/edit/{id}")
-	public ModelAndView showEditInventoryForm(@PathVariable(name = "id") Long id) {
-		ModelAndView mav = new ModelAndView("edit_inventory");
-		
-		Stock stock = productInventoryService.get(id);		
-		List<Distributor> listDistributors = distributorService.listAll();
-		List<Product> listProducts = productService.listAll();		
-		mav.addObject("listProducts", listProducts);
-		mav.addObject("listDistributors", listDistributors);
-		mav.addObject("stock", stock);
-		
-		return mav;
-	}	
-	
-	@RequestMapping("/delete/{id}")
-	public String deleteInventory(@PathVariable(name = "id") Long id) {
-		productInventoryService.delete(id);
-		
-		return "redirect:/";
-	}
+//	@RequestMapping("/edit/{id}")
+//	public ModelAndView showEditInventoryForm(@PathVariable(name = "id") Long id) {
+//		ModelAndView mav = new ModelAndView("edit_inventory");
+//		
+//		Stock stock = productInventoryService.get(id);		
+//		List<Distributor> listDistributors = distributorService.listAll();
+//		List<Product> listProducts = productService.listAll();	
+//		
+//		mav.addObject("listProducts", listProducts);
+//		mav.addObject("listDistributors", listDistributors);
+//		mav.addObject("stock", stock);
+//		
+//		return mav;
+//	}	
+//	
+//	@RequestMapping("/delete/{id}")
+//	public String deleteInventory(@PathVariable(name = "id") Long id) {
+//		
+//		Stock stock = productInventoryService.get(id);		
+//		Product product = productService.get(stock.getIdProduct());
+//        product.setInStock(product.getInStock() - 1);
+//        productService.save(product);
+//		
+//		productInventoryService.delete(id);
+//		
+//		return "redirect:/";
+//	}
 	
 	
 }
