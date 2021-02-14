@@ -14,10 +14,10 @@
 	</form>
 	
 	<h1>Product Manager</h1>
-	<a href="new">Create New Product</a>
+	<a href="">Sales Order</a>
+	<a href="product/showAll">Product List</a>
 	<a href="distributor/ShowAll">Distributor List</a>
-	<a href="inventoryDetails">Inventory Details</a>
-	<a href="salesorder/ShowAll">Sales Orders</a>
+	<a href="inventory/ShowAll">Inventory Details</a>
 	
 	<br/><br/>
 	<table border="1" cellpadding="10">
@@ -39,12 +39,13 @@
 				<td th:text="${product.manufacturer}">Manufacturer</td>
 				<td th:text="${product.MRP}">MRP</td>
 				<td sec:authorize="hasRole('ROLE_ADMIN')">
-					<a th:href="@{'/edit/' + ${product.id}}">Edit</a>
+					<a th:href="@{'/product/edit/' + ${product.id}}">Edit</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;
-					<a th:href="@{'/delete/' + ${product.id}}">Delete</a>
+					<a th:href="@{'/product/delete/' + ${product.id}}">Delete</a>
 				</td>
 			</tr>
 		</tbody>
+		<a href="product/new">Create New Product</a>
 	</table>
 </div>
 </body>

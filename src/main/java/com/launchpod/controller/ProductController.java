@@ -15,12 +15,13 @@ import com.launchpod.entity.Product;
 import com.launchpod.service.ProductService;
 
 @Controller
+@RequestMapping("/product")
 public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-	@RequestMapping("/")
-	public String viewHomePage(Model model) {
+	@RequestMapping("/showAll")
+	public String viewProductList(Model model) {
 		List<Product> listProducts = productService.listAll();
 		model.addAttribute("listProducts", listProducts);
 		

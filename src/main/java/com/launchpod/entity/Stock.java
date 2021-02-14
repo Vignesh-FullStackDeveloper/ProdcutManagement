@@ -1,10 +1,8 @@
 package com.launchpod.entity;
 
-
-
-
-
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,12 +13,16 @@ import javax.persistence.OneToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.Data;
+
+
+@Data
 @Entity
 public class Stock {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long idStock;
+	private Long id;
 	private Long idProduct;
 	private Long idDistributor;
 	private Long unitsreceived;
@@ -38,69 +40,4 @@ public class Stock {
     private Distributor distributor; 
 
 	
-	public Long getIdStock() {
-		return idStock;
-	}
-
-	public void setIdStock(Long idstock) {
-		this.idStock = idstock;
-	}
-
-	public Long getIdProduct() {
-		return idProduct;
-	}
-
-	public void setIdProduct(Long idProduct) {
-		this.idProduct = idProduct;
-	}
-
-	public Long getUnitsreceived() {
-		return unitsreceived;
-	}
-
-	public void setUnitsreceived(Long unitsreceived) {
-		this.unitsreceived = unitsreceived;
-	}
-
-	public Long getDistributorPrice() {
-		return distributorPrice;
-	}
-
-	public void setDistributorPrice(Long distributorPrice) {
-		this.distributorPrice = distributorPrice;
-	}
-	
-	public Date getRecievedDate() {
-		return recievedDate;
-	}
-
-	public void setRecievedDate(Date recievedDate) {
-		this.recievedDate = recievedDate;
-	}
-
-	public Long getIdDistributor() {
-		return idDistributor;
-	}
-
-	public void setIdDistributor(Long idDistributor) {
-		this.idDistributor = idDistributor;
-	}
-
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
-	public Distributor getDistributor() {
-		return distributor;
-	}
-
-	public void setDistributor(Distributor distributor) {
-		this.distributor = distributor;
-	}
-	
-
 }

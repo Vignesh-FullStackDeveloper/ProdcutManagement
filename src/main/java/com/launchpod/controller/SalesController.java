@@ -12,22 +12,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.launchpod.entity.Customer;
-import com.launchpod.entity.Distributor;
+import com.launchpod.entity.Product;
 import com.launchpod.entity.Sales;
-import com.launchpod.model.SalesOrder;
 import com.launchpod.service.CustomerService;
-import com.launchpod.service.DistributorService;
+import com.launchpod.service.ProductService;
 import com.launchpod.service.SalesService;
 
 @Controller
-@RequestMapping("/salesorder")
+@RequestMapping("/")
 public class SalesController {
 	@Autowired
 	private SalesService salesService;
+	@Autowired
+	private CustomerService customerService;
+	@Autowired
+	private ProductService productService;
 	
- 	@RequestMapping("/ShowAll")
+ 	@RequestMapping("/")
 	public String listOfSalesOrder(Model model) {
-		List<SalesOrder> listSalesorder = salesService.getAllSalesOrder();
+		List<Sales> listSalesorder = salesService.listAll();
 		model.addAttribute("listSalesorder", listSalesorder);
 		
 		return "saleorder";
@@ -36,14 +39,43 @@ public class SalesController {
 	@RequestMapping("/new")
 	public String showNewSalesForm(Model model) {
 		Sales sale = new Sales();
-		model.addAttribute("sale", sale);
+		List<Customer> listCustomer = customerService.listAll();
+		List<Product> listProducts = productService.listAll();
 		
-		return "new_sale";
+		model.addAttribute("listProducts", listProducts);
+		model.addAttribute("listCustomers", listCustomer);
+		model.addAttribute("sales", sale);
+		
+		return "new_salesorder";
+	}
+	
+	@RequestMapping(value = "/newsave", method = RequestMethod.POST)
+	public String saveSalesOrder(@ModelAttribute("salesorder") Sales salesorder) {
+		
+		Customer customer = customerService.get(salesorder.getIdCustomer());
+		customer.setLastBillAmount(salesorder.getPrice());
+		customer.setLastBillDate(salesorder.getPurchaseDate());
+		customerService.save(customer);
+		Product product = productService.get(salesorder.getIdProduct());
+		product.setLastPurchaseOn(salesorder.getPurchaseDate());
+		product.setInStock(product.getInStock() + 1);
+		productService.save(product);
+		salesService.save(salesorder);
+		
+		return "redirect:/salesorder/ShowAll";
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveSalesOrder(@ModelAttribute("salesorder") SalesOrder salesorder) {
-		//salesService.saveSalesorder(salesorder);
+	public String saveEditSalesOrder(@ModelAttribute("salesorder") Sales salesorder) {
+		
+		Customer customer = customerService.get(salesorder.getIdCustomer());
+		customer.setLastBillAmount(salesorder.getPrice());
+		customer.setLastBillDate(salesorder.getPurchaseDate());
+		customerService.save(customer);
+		Product product = productService.get(salesorder.getIdProduct());
+		product.setLastPurchaseOn(salesorder.getPurchaseDate());
+		productService.save(product);
+		salesService.save(salesorder);
 		
 		return "redirect:/salesorder/ShowAll";
 	}
@@ -52,16 +84,25 @@ public class SalesController {
 	public ModelAndView showEditSaleForm(@PathVariable(name = "id") Long id) {
 		ModelAndView mav = new ModelAndView("edit_saleorder");
 		
-		SalesOrder saleOrder = salesService.getSaleOrder(id);
-		mav.addObject("saleOrder", saleOrder);
+		Sales sale = salesService.get(id);
+		List<Customer> listCustomer = customerService.listAll();
+		List<Product> listProducts = productService.listAll();
+		
+		mav.addObject("listCustomer", listCustomer);
+		mav.addObject("listProducts", listProducts);
+		mav.addObject("Sales", sale);
 		
 		return mav;
 	}	
 	
 	@RequestMapping("/delete/{id}")
 	public String deleteSale(@PathVariable(name = "id") Long id) {
-		salesService.deleteSaleOrder(id);
 		
+		Sales sale = salesService.get(id);
+		Product products = productService.get(sale.getIdProduct());
+		products.setInStock(products.getInStock() - 1);
+		productService.save(products);
+		salesService.delete(id);
 		return "redirect:/salesorder/ShowAll";
 	}
 }

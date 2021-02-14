@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.launchpod.entity.Distributor;
 import com.launchpod.entity.Product;
-import com.launchpod.entity.ProductInventory;
 import com.launchpod.entity.Stock;
 import com.launchpod.service.DistributorService;
 import com.launchpod.service.ProductInventoryService;
@@ -50,7 +49,7 @@ public class ProductInventoryController {
 	public String saveProductInventory(@ModelAttribute("stock") Stock stock) {
 		productInventoryService.save(stock);
 		
-		return "redirect:/";
+		return "redirect:/inventory/ShowAll";
 	}
 	
 	@RequestMapping("/ShowAll")

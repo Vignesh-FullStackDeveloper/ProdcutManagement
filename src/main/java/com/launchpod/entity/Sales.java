@@ -1,70 +1,40 @@
 package com.launchpod.entity;
 
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import lombok.Data;
+
+@Data
 @Entity
 public class Sales {
-	private Long idsales;
-	private Long idproduct;
-	private Long idcustomer;
-	private Long discount;
-	private String purchaseDate;
-	private float price;
-
-	public Sales() {
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long getIdsales() {
-		return idsales;
-	}
+	private Long id;
+	private Long idProduct;
+	private Long idCustomer;
+	private Long discount;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date purchaseDate;
+	private float price;
 
-	public void setIdsales(Long idsales) {
-		this.idsales = idsales;
-	}
+	@OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idProduct", referencedColumnName = "id", insertable = false, updatable = false)
+    private Product product; 
+    
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idCustomer", referencedColumnName = "id", insertable = false, updatable = false)
+    private Customer customer; 
 	
-	public Long getIdproduct() {
-		return idproduct;
-	}
-
-	public void setIdproduct(Long idproduct) {
-		this.idproduct = idproduct;
-	}
-
-	public Long getIdcustomer() {
-		return idcustomer;
-	}
-
-	public void setIdcustomer(Long idcustomer) {
-		this.idcustomer = idcustomer;
-	}
-
-	public Long getDiscount() {
-		return discount;
-	}
-
-	public void setDiscount(Long discount) {
-		this.discount = discount;
-	}
-
-	public String getPurchaseDate() {
-		return purchaseDate;
-	}
-
-	public void setPurchaseDate(String purchaseDate) {
-		this.purchaseDate = purchaseDate;
-	}
-
-	public float getPrice() {
-		return price;
-	}
-
-	public void setPrice(float price) {
-		this.price = price;
-	}
-
 }

@@ -35,7 +35,7 @@
 		</thead>
 		<tbody>
 			<tr th:each="stock : ${listStocks}">
-				<td th:text="${stock.idStock}">S No.</td>
+				<td th:text="${stock.id}">S No.</td>
 				<td th:text="${stock.product.productName}">Product</td>
 				<td th:text="${stock.product.manufacturer}">Manufacturer</td>
 				<td th:text="${stock.distributor.name}">Distributor</td>
@@ -43,12 +43,13 @@
 				<td th:text="${stock.distributorPrice}">Distributor Price</td>
 				<td th:text="${stock.recievedDate}">Deliverd On</td>
 				<td sec:authorize="hasRole('ROLE_ADMIN')">
-					<a th:href="@{'/inventory/edit/' + ${stock.idStock}}">Edit</a>
+					<a th:href="@{'/inventory/edit/' + ${stock.id}}">Edit</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;
-					<a th:href="@{'/inventory/delete/' + ${stock.idStock}}">Delete</a>
+					<a th:href="@{'/inventory/delete/' + ${stock.id}}">Delete</a>
 				</td>
 			</tr>
 		</tbody>
+		<a href="inventory/new">Create new Inventory Details</a>
 	</table>
 </div>
 </body>
