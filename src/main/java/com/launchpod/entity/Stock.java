@@ -1,8 +1,6 @@
 package com.launchpod.entity;
 
 import java.util.Date;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -39,5 +37,4 @@ public class Stock {
     @JoinColumn(name = "idDistributor", referencedColumnName = "id", insertable = false, updatable = false)
     private Distributor distributor; 
 
-	
 }

@@ -62,17 +62,21 @@ public class ProductInventoryController {
 	
 	@RequestMapping("/edit/{id}")
 	public ModelAndView showEditInventoryForm(@PathVariable(name = "id") Long id) {
-		ModelAndView mav = new ModelAndView("edit_distributor");
+		ModelAndView mav = new ModelAndView("edit_inventory");
 		
-		Distributor distributor = distributorService.get(id);
-		mav.addObject("distributor", distributor);
+		Stock stock = productInventoryService.get(id);		
+		List<Distributor> listDistributors = distributorService.listAll();
+		List<Product> listProducts = productService.listAll();		
+		mav.addObject("listProducts", listProducts);
+		mav.addObject("listDistributors", listDistributors);
+		mav.addObject("stock", stock);
 		
 		return mav;
 	}	
 	
 	@RequestMapping("/delete/{id}")
 	public String deleteInventory(@PathVariable(name = "id") Long id) {
-		distributorService.delete(id);
+		productInventoryService.delete(id);
 		
 		return "redirect:/";
 	}
