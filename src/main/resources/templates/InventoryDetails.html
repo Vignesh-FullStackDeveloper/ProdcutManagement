@@ -14,10 +14,11 @@
 	</form>
 	
 	<h1>Product Manager</h1>
-	<a href="">Sales Order</a>
-	<a href="product/showAll">Product List</a>
-	<a href="distributor/ShowAll">Distributor List</a>
-	<a href="inventory/ShowAll">Inventory Details</a>
+	<a th:href="@{/}">Sales Order</a>
+	<a th:href="@{/product/showAll}">Product List</a>
+	<a th:href="@{/distributor/ShowAll}">Distributor List</a>
+	<a th:href="${#httpServletRequest.requestURL.toString()}">Inventory Details</a>
+	<a th:href="@{/inventory/ShowAll}">Inventory Managements</a>
 	
 	<br/><br/>
 	<table border="1" cellpadding="10">

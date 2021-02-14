@@ -14,9 +14,11 @@
 	</form>
 	
 	<h1>Product Manager</h1>
-	<a href="product/new">Create New Product</a>
-	<a href="distributor/ShowAll">Distributor List</a>
-	<a href="inventoryDetails">Inventory Details</a>
+	<a th:href="@{/}">Sales Order</a>
+	<a th:href="@{/product/showAll}">Product List</a>
+	<a th:href="@{/distributor/ShowAll}">Distributor List</a>
+	<a th:href="@{/product/inventoryDetails}">Inventory Details</a>
+	<a th:href="${#httpServletRequest.requestURL.toString()}">Inventory Managements</a>
 	
 	<br/><br/>
 	<table border="1" cellpadding="10">
@@ -28,8 +30,7 @@
 				<th>Distributor</th>
 				<th>Units Received</th>
 				<th>Distributor Price</th>
-				<th>Deliverd On</th>
-				<th sec:authorize="hasRole('ROLE_ADMIN')">Actions</th>				
+				<th>Deliverd On</th>			
 				
 			</tr>
 		</thead>
@@ -42,14 +43,10 @@
 				<td th:text="${stock.unitsreceived}">Units Received</td>
 				<td th:text="${stock.distributorPrice}">Distributor Price</td>
 				<td th:text="${stock.recievedDate}">Deliverd On</td>
-				<td sec:authorize="hasRole('ROLE_ADMIN')">
-					<a th:href="@{'/inventory/edit/' + ${stock.id}}">Edit</a>
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<a th:href="@{'/inventory/delete/' + ${stock.id}}">Delete</a>
-				</td>
+	
 			</tr>
 		</tbody>
-		<a href="inventory/new">Create new Inventory Details</a>
+		<a th:href="@{/inventory/new}">Create new Inventory Details</a>
 	</table>
 </div>
 </body>
