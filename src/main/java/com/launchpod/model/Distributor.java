@@ -1,32 +1,28 @@
 package com.launchpod.model;
 
-import javax.persistence.Column;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.OneToMany;
+
 
 @Entity
-@Table(name = "distributor")
 public class Distributor {
 	@Id
-	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(name = "Code")
 	private String Code;
-	@Column(name = "name")
 	private String name;
-	@Column(name = "address")
 	private String address;
-	@Column(name = "contactNumber")
 	private String contactNumber;
-	@Column(name = "contactPerson")
 	private String contactPerson;
 
-	public Distributor() {
-	}
+	@OneToMany(mappedBy = "distributor", fetch = FetchType.LAZY)
+	private List<Stock> stocks;
 
 	public Long getId() {
 		return id;

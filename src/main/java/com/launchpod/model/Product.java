@@ -1,34 +1,34 @@
 package com.launchpod.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 
 @Entity
-@Table(name = "product")
 public class Product {
 	
 	@Id
 	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@Column(name = "product_name")
 	private String productName;
-	@Column(name = "manufacturer")
 	private String manufacturer;
-	@Column(name = "MRP")
 	private float MRP;
-	@Column(name = "in_stock")
 	private Long inStock;
-	@Column(name = "last_purchase_on")
 	private Long lastPurchaseOn;
-
-	public Product() {
-	}
-
+	
+	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+	private List<Stock> stocks;
+	
 	public Long getId() {
 		return id;
 	}
@@ -76,5 +76,17 @@ public class Product {
 	public void setLastPurchaseOn(Long lastPurchaseOn) {
 		this.lastPurchaseOn = lastPurchaseOn;
 	}
+
+//	public List<Stock> getStocks() {
+//		return stocks;
+//	}
+//
+//	public void setStocks(List<Stock> stocks) {
+//		this.stocks = stocks;
+//	}
+
+
+		
+	
 
 }

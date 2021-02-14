@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.launchpod.model.Distributor;
 import com.launchpod.model.Product;
@@ -45,8 +47,33 @@ public class ProductInventoryController {
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveProduct(@ModelAttribute("stock") Stock stock) {
+	public String saveProductInventory(@ModelAttribute("stock") Stock stock) {
 		productInventoryService.save(stock);
+		
+		return "redirect:/";
+	}
+	
+	@RequestMapping("/ShowAll")
+	public String viewInventoryPage(Model model) {
+		List<Stock> listStocks = productInventoryService.listAll();
+		model.addAttribute("listStocks", listStocks);
+		return "inventoryList";
+	}
+	
+	
+	@RequestMapping("/edit/{id}")
+	public ModelAndView showEditInventoryForm(@PathVariable(name = "id") Long id) {
+		ModelAndView mav = new ModelAndView("edit_distributor");
+		
+		Distributor distributor = distributorService.get(id);
+		mav.addObject("distributor", distributor);
+		
+		return mav;
+	}	
+	
+	@RequestMapping("/delete/{id}")
+	public String deleteInventory(@PathVariable(name = "id") Long id) {
+		distributorService.delete(id);
 		
 		return "redirect:/";
 	}
