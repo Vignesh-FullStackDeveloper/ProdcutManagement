@@ -13,52 +13,55 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.launchpod.entity.Customer;
 import com.launchpod.entity.Distributor;
+import com.launchpod.entity.Sales;
+import com.launchpod.model.SalesOrder;
 import com.launchpod.service.CustomerService;
 import com.launchpod.service.DistributorService;
+import com.launchpod.service.SalesService;
 
 @Controller
-@RequestMapping("/customer")
+@RequestMapping("/salesorder")
 public class SalesController {
 	@Autowired
-	private CustomerService customerService;
+	private SalesService salesService;
 	
  	@RequestMapping("/ShowAll")
-	public String listOfCustomer(Model model) {
-		List<Customer> listCustomers = customerService.listAll();
-		model.addAttribute("listCustomers", listCustomers);
+	public String listOfSalesOrder(Model model) {
+		List<SalesOrder> listSalesorder = salesService.getAllSalesOrder();
+		model.addAttribute("listSalesorder", listSalesorder);
 		
-		return "customerList";
+		return "saleorder";
 	}
 	
 	@RequestMapping("/new")
-	public String showNewCustomerForm(Model model) {
-		Customer customer = new Customer();
-		model.addAttribute("customer", customer);
+	public String showNewSalesForm(Model model) {
+		Sales sale = new Sales();
+		model.addAttribute("sale", sale);
 		
-		return "new_customer";
+		return "new_sale";
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveCustomer(@ModelAttribute("customer") Customer customer) {
-		customerService.save(customer);
+	public String saveSalesOrder(@ModelAttribute("salesorder") SalesOrder salesorder) {
+		//salesService.saveSalesorder(salesorder);
 		
-		return "redirect:/";
+		return "redirect:/salesorder/ShowAll";
 	}
 	
 	@RequestMapping("/edit/{id}")
-	public ModelAndView showEditCustomerForm(@PathVariable(name = "id") Long id) {
-		ModelAndView mav = new ModelAndView("edit_distributor");
+	public ModelAndView showEditSaleForm(@PathVariable(name = "id") Long id) {
+		ModelAndView mav = new ModelAndView("edit_saleorder");
 		
-		Customer customer = customerService.get(id);
-		mav.addObject("customer", customer);
+		SalesOrder saleOrder = salesService.getSaleOrder(id);
+		mav.addObject("saleOrder", saleOrder);
 		
 		return mav;
 	}	
 	
 	@RequestMapping("/delete/{id}")
-	public String deleteCustomer(@PathVariable(name = "id") Long id) {
-		customerService.delete(id);
+	public String deleteSale(@PathVariable(name = "id") Long id) {
+		salesService.deleteSaleOrder(id);
 		
-		return "redirect:/";
+		return "redirect:/salesorder/ShowAll";
 	}
 }

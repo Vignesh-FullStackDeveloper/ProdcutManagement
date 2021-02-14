@@ -30,20 +30,22 @@
 				<th>Manufacturer</th>
 				<th>Discount (%)</th>
 				<th>Price</th>
+				<th sec:authorize="hasRole('ROLE_ADMIN')">Actions</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="distributor : ${listDistributors}">
-				<td th:text="${distributor.id}">Distributor ID</td>
-				<td th:text="${distributor.Code}">Code</td>
-				<td th:text="${distributor.name}">Name</td>
-				<td th:text="${distributor.address}">Address</td>
-				<td th:text="${distributor.contactPerson}">ContactPerson</td>
-				<td th:text="${distributor.contactNumber}">ContactNumber</td>
+			<tr th:each="salesorder : ${listSalesorder}">
+				<td th:text="${salesorder.customerName}">Customer Name</td>
+				<td th:text="${salesorder.customerContact}">Customer Contact</td>
+				<td th:text="${salesorder.customerEmail}">Customer Email</td>
+				<td th:text="${salesorder.product}">Product</td>
+				<td th:text="${salesorder.manufacturer}">Manufacturer</td>
+				<td th:text="${salesorder.discount}">Discount (%)</td>
+				<td th:text="${salesorder.price}">Price</td>
 				<td sec:authorize="hasRole('ROLE_ADMIN')">
-					<a th:href="@{'/distributor/edit/' + ${distributor.id}}">Edit</a>
+					<a th:href="@{'/salesorder/edit/' + ${salesorder.id}}">Edit</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;
-					<a th:href="@{'distributor/delete/' + ${distributor.id}}">Delete</a>
+					<a th:href="@{'/salesorder/delete/' + ${salesorder.id}}">Delete</a>
 				</td>
 			</tr>
 		</tbody>
