@@ -9,3 +9,12 @@
 #example_info{
 	text-align: start;
 }
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control{
+	padding: 8px;
+}
+

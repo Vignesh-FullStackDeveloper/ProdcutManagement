@@ -4,7 +4,7 @@
 <head>
 
 <meta charset="ISO-8859-1">
-<title>Product Manager</title>
+<title>Inventory List</title>
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap.min.css" rel="stylesheet" />
@@ -19,7 +19,7 @@
 <body>
 <div align="center">	
 	<div lang="en" th:replace="link"> </div>
-		<a th:href="@{/inventory/new}" >Create new Inventory Details</a>
+		<a th:href="@{/inventory/new}" >Create New Stock</a>
 	<table id="example" class="table table-striped table-bordered" >
 		<thead>
 			<tr>
@@ -30,7 +30,7 @@
 				<th>Units Received</th>
 				<th>Distributor Price</th>
 				<th>Deliverd On</th>
-				<th sec:authorize="hasRole('ROLE_ADMIN')">Actions</th>				
+				<!-- <th sec:authorize="hasRole('ROLE_ADMIN')">Actions</th>	 -->			
 			</tr>
 		</thead>
 		<tbody>
@@ -42,11 +42,11 @@
 				<td th:text="${stock.unitsreceived}">Units Received</td>
 				<td th:text="${stock.distributorPrice}">Distributor Price</td>
 				<td th:text="${stock.recievedDate}">Deliverd On</td>
-				<td sec:authorize="hasRole('ROLE_ADMIN')">
+				<!-- <td sec:authorize="hasRole('ROLE_ADMIN')">
 					<a th:href="@{'/inventory/edit/' + ${stock.id}}">Edit</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<a th:href="@{'/inventory/delete/' + ${stock.id}}">Delete</a>
-				</td>
+				</td> -->
 			</tr>
 		</tbody>
 		
